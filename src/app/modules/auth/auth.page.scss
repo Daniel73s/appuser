@@ -1,0 +1,15 @@
+.margin-top-text{
+    margin-top: 7rem;
+    margin-bottom: 4rem;
+}
+ion-input{
+    --background:var(--ion-color-light);
+    --padding-start:1rem;
+    --border-radius:10px;
+    --highlight-color-focused:none;
+    margin-bottom: 2rem;
+}
+ion-button{
+    height: 50px;
+    --border-radius:10px;
+}

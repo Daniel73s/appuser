@@ -1,0 +1,96 @@
+<app-header></app-header>
+
+<ion-content [fullscreen]="true">
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col size="12">
+        <ion-text color="secondary">
+          <h1 class="titulo">Descubre tu menu favorito</h1>
+        </ion-text>
+        <ion-searchbar placeholder="Busca tu producto" [debounce]="250"></ion-searchbar>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <ion-list>
+          <ion-list-header>
+            <ion-label class="subtitulo">Categorias</ion-label>
+          </ion-list-header>
+        </ion-list>
+        <ion-row class="ion-text-center">
+          <ion-col size="12">
+            <swiper-container pagination="false" [slidesPerView]="3.2" >
+              <swiper-slide *ngFor="let categoria of categorias">
+                <ion-chip color="secondary" mode="md" outline="false" (click)="showcategoria('123')">
+                  <ion-avatar>
+                    <img [src]="categoria.img" />
+                  </ion-avatar>
+                  <ion-label>{{categoria.titulo}}</ion-label>
+                </ion-chip>
+              </swiper-slide>
+            </swiper-container>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <ion-list>
+          <ion-list-header>
+            <ion-label class="subtitulo">Menu de productos</ion-label>
+          </ion-list-header>
+        </ion-list>
+        <ion-row>
+          <ion-col size="6">
+            <img (click)="detalle('132')" src="./assets/img/producto1.jpg" class="img-producto" alt="no se encontro la imagen">
+            <div class="texto-producto">
+              Ensalada de frutas
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span>2Bs</span>
+                <ion-button fill="clear" (click)="ordenar('123')">
+                  <ion-icon slot="icon-only" name="add-outline"></ion-icon>
+                </ion-button>
+              </div>
+            </div>
+          </ion-col>
+          <ion-col size="6">
+            <img (click)="detalle('132')" src="./assets/img/producto2.jpg" class="img-producto" alt="no se encontro la imagen">
+            <div class="texto-producto">
+              Barra de cereal
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span>2Bs</span>
+                <ion-button fill="clear" (click)="ordenar('123')">
+                  <ion-icon slot="icon-only" name="add-outline"></ion-icon>
+                </ion-button>
+              </div>
+            </div>
+          </ion-col>
+          <ion-col size="6">
+            <img (click)="detalle('132')" src="./assets/img/producto3.jpg" class="img-producto" alt="no se encontro la imagen">
+            <div class="texto-producto">
+              Manzanas
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span>1Bs</span>
+                <ion-button fill="clear" (click)="ordenar('123')">
+                  <ion-icon slot="icon-only" name="add-outline"></ion-icon>
+                </ion-button>
+              </div>
+            </div>
+          </ion-col>
+          <ion-col size="6">
+            <img (click)="detalle('132')" src="./assets/img/producto4.jpg" class="img-producto" alt="no se encontro la imagen">
+            <div class="texto-producto">
+              Karpil (pil)
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span>1Bs</span>
+                <ion-button fill="clear" (click)="ordenar('123')">
+                  <ion-icon slot="icon-only" name="add-outline"></ion-icon>
+                </ion-button>
+              </div>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

@@ -1,0 +1,53 @@
+<app-header-subpage></app-header-subpage>
+<ion-content>
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col size="12">
+        <ion-text color="secondary">
+          <h1 class="titulo">
+            Adéntrate en el Mundo de "Lacteos" 
+          </h1>
+        </ion-text>
+        <ion-searchbar placeholder="Busca tu producto" [debounce]="250"></ion-searchbar>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="6">
+        <img (click)="detalle('132')" src="./assets/img/producto4.jpg" class="img-producto" alt="no se encontro la imagen">
+        <div class="texto-producto">
+          Karpil (Pil Tarija)
+          <div class="content-footer">
+            <span>1Bs</span>
+            <ion-button fill="clear" (click)="ordenar('132')">
+              <ion-icon slot="icon-only" name="add-outline"></ion-icon>
+            </ion-button>
+          </div>
+        </div>
+      </ion-col>
+      <ion-col size="6">
+        <img (click)="detalle('132')" src="./assets/img/producto5.jpg" class="img-producto" alt="no se encontro la imagen">
+        <div class="texto-producto">
+          Yogurt griego
+          <div class="content-footer">
+            <span>2Bs</span>
+            <ion-button fill="clear" (click)="ordenar('132')">
+              <ion-icon slot="icon-only" name="add-outline"></ion-icon>
+            </ion-button>
+          </div>
+        </div>
+      </ion-col>
+      <ion-col size="6">
+        <img (click)="detalle('132')" src="./assets/img/producto6.jpg" class="img-producto" alt="no se encontro la imagen">
+        <div class="texto-producto">
+          Licuado de platano
+          <div class="content-footer">
+            <span>2Bs</span>
+            <ion-button fill="clear"  (click)="ordenar('132')">
+              <ion-icon slot="icon-only" name="add-outline"></ion-icon>
+            </ion-button>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

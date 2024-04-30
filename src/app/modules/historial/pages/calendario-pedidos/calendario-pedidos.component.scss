@@ -1,0 +1,17 @@
+.titulo{
+    font-weight: 700; 
+    font-size: 30px;
+}
+.avatar{
+    width: 55px;
+    height: 55px;
+}
+.mensaje{
+   display: flex; 
+   flex-direction: column; 
+   align-items: center;
+   ion-icon{
+    font-size: 70px;
+   }
+
+}

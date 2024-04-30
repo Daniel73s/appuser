@@ -1,0 +1,34 @@
+ion-searchbar {
+    --background: var(--ion-color-light);
+    --box-shadow: none;
+    --border-radius: 8px;
+}
+.titulo{
+    font-weight: 700; 
+    font-size: 30px;
+}
+.subtitulo{
+    font-weight: 600;
+    font-size: 18px;
+    color: var(--ion-color-secondary);
+}
+.img-producto{
+    width:100%;
+    height:10rem;
+    object-fit: cover;
+    border-radius: 10px;
+}
+.texto-producto{
+    color:var(--ion-color-secondary);
+    font-weight: 1000;
+}
+
+@media only screen and (max-width:300px) {
+    .img-producto{
+        text-align: center;
+
+    }
+    .texto-producto{
+        color: red;
+    }
+  }

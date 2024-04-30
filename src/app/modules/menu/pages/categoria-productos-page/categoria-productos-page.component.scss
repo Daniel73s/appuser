@@ -1,0 +1,24 @@
+.titulo{
+    font-weight: 700; 
+    font-size: 30px;
+}
+ion-searchbar {
+    --background: var(--ion-color-light);
+    --box-shadow: none;
+    --border-radius: 8px;
+}
+.img-producto{
+    width:100%;
+    height:10rem;
+    object-fit: cover;
+    border-radius: 10px;
+}
+.texto-producto{
+    color:var(--ion-color-secondary);
+    font-weight: 1000;
+}
+.content-footer{
+    display: flex; 
+    justify-content:space-between; 
+    align-items: center;
+}

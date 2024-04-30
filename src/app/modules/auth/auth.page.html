@@ -1,0 +1,37 @@
+<ion-content [fullscreen]="true">
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col size="12" class="ion-text-center ion-margin-top" >
+        <ion-text color="primary">
+          <b>Plataforma de</b>
+        </ion-text>
+        <ion-text color="medium">
+          <b> Pedidos</b>
+        </ion-text>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <ion-text color="dark" class="ion-text-center">
+          <h1 class="margin-top-text">Bienvenido, inicia sesion</h1>
+        </ion-text>
+      </ion-col>
+    </ion-row>
+    <ion-row  class="ion-justify-content-center">
+      <ion-col size="11">
+        <ion-input type="text" placeholder="ingresa tu usuario"></ion-input>
+        <ion-input type="text" placeholder="Contraseña" type="password"></ion-input>
+        <ion-button expand="block" (click)="login()">
+          iniciar sesion
+        </ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12" class="ion-text-center ion-margin-top">
+        <ion-text color="primary">
+          <span>Olvidaste tu contraseña</span>
+        </ion-text>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

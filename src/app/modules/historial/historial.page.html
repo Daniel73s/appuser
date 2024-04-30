@@ -1,0 +1,84 @@
+<app-header></app-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header class="ion-no-border">
+    <ion-toolbar>
+      <ion-title>Historial de pedidos</ion-title>
+      <ion-buttons slot="end">
+        <ion-button  fill="clear" (click)="calendario()">
+          <ion-icon slot="icon-only" name="calendar-outline"></ion-icon>
+        </ion-button>
+        <ion-button color="primary" fill="clear" (click)="filtro()">
+          <ion-icon slot="icon-only" name="filter-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col size="12">
+        <ion-segment scrollable="true" value="todos">
+          <ion-segment-button value="todos">
+            <ion-label>Todos</ion-label>
+          </ion-segment-button>
+          <ion-segment-button value="pendiente">
+            <ion-label>Pendientes</ion-label>
+          </ion-segment-button>
+          <ion-segment-button value="confirmados">
+            <ion-label>confirmados</ion-label>
+          </ion-segment-button>
+          <ion-segment-button value="recibidos">
+            <ion-label>Recibidos</ion-label>
+          </ion-segment-button>
+
+          <ion-segment-button value="rechazados">
+            <ion-label>Rechazados</ion-label>
+          </ion-segment-button>
+          <ion-segment-button value="cancelados">
+            <ion-label>Cancelados</ion-label>
+          </ion-segment-button>
+        </ion-segment>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size-xs="12" size-sm="12" size-md="6" size-lg="6" *ngFor="let pedido of pedidos">
+        <ion-card (click)="detalle_pedido('123')">
+          <ion-card-header>
+            <ion-card-title color="secondary">
+              <h3 style="display: inline;"> {{pedido.producto}}</h3> <span style="float: right;">{{pedido.precio}}
+                Bs</span>
+            </ion-card-title>
+            <ion-card-subtitle>
+              <ion-chip [color]="pedido.estado==='recibido'?'success':pedido.estado=='confirmado'?'primary':'warning'"
+                outline="false">{{pedido.estado}}</ion-chip>
+            </ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-item lines="none">
+              <ion-icon name="time-outline" slot="start"></ion-icon>
+              <ion-label>
+                <p>{{pedido.detalle.fecha_entrega}} de {{pedido.detalle.hora_entrega}}</p>
+              </ion-label>
+            </ion-item>
+            <ion-item lines="none">
+              <ion-icon name="people-outline" slot="start"></ion-icon>
+              <ion-label>
+                <p>
+                  {{pedido.proveedor}}
+                </p>
+              </ion-label>
+            </ion-item>
+            <ion-item lines="none">
+              <ion-icon name="pin-outline" slot="start"></ion-icon>
+              <ion-label class="ion-text-wrap">
+                <p>
+                  {{pedido.detalle.referencia}}
+                </p>
+              </ion-label>
+            </ion-item>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

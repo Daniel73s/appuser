@@ -1,0 +1,46 @@
+<app-header-subpage></app-header-subpage>
+<ion-content>
+  <ion-header class="ion-no-border">
+    <ion-toolbar>
+      <ion-title>Calendario de Pedidos</ion-title>
+      <ion-buttons slot="end">
+        <ion-button (click)="filtrar()">
+          <ion-icon slot="icon-only" name="calendar-number-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+<ion-grid fixed>
+  <ion-row>
+    <ion-col size="12">
+      <ion-datetime (ionChange)="verpedidos($event)" [highlightedDates]="highlightedDates" [(ngModel)]="fecha" presentation="date" size="cover" display-format="DD.MM.YYYY HH:mm"></ion-datetime>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="12">
+      <ion-header class="ion-no-border">
+        <ion-toolbar>
+          <ion-title>Pedidos</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-item *ngIf="pedido">
+       <ion-avatar slot="start" class="avatar">
+        <img src="./assets/img/producto1.jpg"/>
+       </ion-avatar>
+        <ion-label class="ion-text-wrap">
+          <h3>Ensalada de frutas</h3>
+          <p>350 unidades</p>
+          <p>2 Bs</p>
+        </ion-label>
+        <ion-badge color="warning" mode="ios" slot="end">Pendiente</ion-badge>
+      </ion-item>
+      <div class="mensaje" *ngIf="!pedido">
+        <ion-text color="secondary">
+          <span>No se Encontro pedidos para esta fecha</span>
+        </ion-text>
+        <ion-icon color="primary" name="alert-circle-outline"></ion-icon>
+      </div>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+</ion-content>

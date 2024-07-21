@@ -1,0 +1,94 @@
+<app-header-subpage></app-header-subpage>
+<ion-content>
+  <ion-grid fixed class="ion-padding">
+    <ion-list>
+      <ion-list-header>
+        <ion-label>Modificar Imagen</ion-label>
+      </ion-list-header>
+    </ion-list>
+    <ion-row>
+      <ion-col size="12">
+        <ion-item lines="none">
+          <ion-thumbnail slot="start" class="img-producto">
+            <img [src]="url" />
+          </ion-thumbnail>
+          <ion-label slot="end">
+            <label for="imagen" class="btn-selected-img">Buscar imagen</label>
+            <input type="file" id="imagen" hidden (change)="handleFileChange($event)">
+          </ion-label>
+        </ion-item>
+        <ion-button expand="block" (click)="actualizarImagen()">
+          Actualizar imagen
+        </ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-list>
+      <ion-list-header>
+        <ion-label>Modificar Informacion</ion-label>
+      </ion-list-header>
+    </ion-list>
+    <form [formGroup]="formUpdateProducto" (submit)="update()">
+
+      <ion-row>
+        <ion-col size="12">
+          <ion-item>
+            <ion-input label="Nombre" formControlName="nombre" labelPlacement="stacked"
+              placeholder="Ingrese nombre de producto"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="12">
+          <ion-item>
+            <ion-input label="Stacked label" formControlName="precio_unitario" labelPlacement="stacked"
+              placeholder="Enter text"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="12">
+          <ion-item>
+            <ion-select formControlName="tipo" justify="space-between" labelPlacement="stacked" label="Tipo *"
+              placeholder="Seleccione el tipo del producto">
+              <ion-select-option value="liquido">Liquido</ion-select-option>
+              <ion-select-option value="solido">Solido</ion-select-option>
+              <ion-select-option value="otro">Otro</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+        <ion-col size="12">
+          <ion-item>
+            <ion-textarea label="Descripcion" autoGrow="true" formControlName="descripcion" labelPlacement="stacked"
+              placeholder="Descripcion del producto"></ion-textarea>
+          </ion-item>
+        </ion-col>
+        <ion-col size="12">
+          <ion-item>
+            <ion-input label="Medida" type="number" formControlName="medida" labelPlacement="stacked"
+              placeholder="Medida"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="12">
+          <ion-item>
+            <ion-select justify="end" labelPlacement="stacked" label="Unidad de medida" formControlName="unidad_medida">
+              <ion-select-option value="gr">Gramos</ion-select-option>
+              <ion-select-option value="ml">Mililitros</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+        <ion-col size="12">
+          <ion-item>
+            <ion-select labelPlacement="stacked" label="Categoria" aria-label="Unidad de medida" formControlName="id_categoria">
+              <ion-select-option [value]="categoria.id_categoria" *ngFor="let categoria of categorias">{{categoria.nombre}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="12">
+          <ion-button expand="block" type="submit" [disabled]="formUpdateProducto.invalid">
+            Actualizar informacion
+          </ion-button>
+        </ion-col>
+      </ion-row>
+
+    </form>
+  </ion-grid>
+
+</ion-content>

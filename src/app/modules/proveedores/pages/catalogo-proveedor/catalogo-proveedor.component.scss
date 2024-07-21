@@ -3,11 +3,6 @@ ion-searchbar {
     --box-shadow: none;
     --border-radius: 8px;
 }
-.titulo{
-    font-weight: 700; 
-    font-size: 30px;
-    color: var(--ion-color-secondary);
-}
 .subtitulo{
     font-weight: 600;
     font-size: 18px;
@@ -19,7 +14,9 @@ ion-searchbar {
     object-fit: cover;
     border-radius: 10px;
 }
-.texto-producto{
-    color:var(--ion-color-secondary);
-    font-weight: 1000;
+.avatar {
+    width: 100px;
+    height: 100px;
+    padding: 5px;
+    --border-radius:15px;
 }

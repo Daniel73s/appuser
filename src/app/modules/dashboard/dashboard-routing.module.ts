@@ -4,11 +4,11 @@ import { Routes, RouterModule } from '@angular/router';
 import { DashboardPage } from './dashboard.page';
 
 const routes: Routes = [
-  {
-    path: '',
-    redirectTo:'productos',
-    pathMatch:'full'
-  },
+  // {
+  //   path: '',
+  //   redirectTo:'productos',
+  //   pathMatch:'full'
+  // },
   {
     path:'productos',
     loadChildren:() => import('../productos/productos.module').then( m => m.ProductosPageModule)

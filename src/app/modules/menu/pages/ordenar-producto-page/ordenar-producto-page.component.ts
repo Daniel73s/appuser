@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AlertController, LoadingController, ToastController } from '@ionic/angular';
+import { ProductosService } from '../../services/productos.service';
 
 @Component({
   selector: 'app-ordenar-producto-page',
@@ -12,13 +13,23 @@ export class OrdenarProductoPageComponent implements OnInit {
   public fecha_actual = new Date().toISOString();
   public horasPermitidas: number[] = [];
   private loading: any;
+  private id_producto: string = '';
+  public producto: any;
+  public hora_inicio: any;
+  public hora_fin: any;
+  public fechas: any[] = [];
   constructor(private toastCtrl: ToastController,
     private alertCtrl: AlertController,
     private loadingCtrl: LoadingController,
-    private router: Router) { }
+    private router: Router,
+    private routeActivate: ActivatedRoute,
+    private _productos: ProductosService) { }
 
   ngOnInit() {
     this.generarHoras();
+    this.id_producto = this.routeActivate.snapshot.params['id'];
+    console.log('llego', this.id_producto);
+    this.getProducto(this.id_producto);
   }
 
   private generarHoras() {
@@ -54,7 +65,7 @@ export class OrdenarProductoPageComponent implements OnInit {
     toast.present();
   }
 
-  async alerta() {
+  public async alerta() {
     const alert = await this.alertCtrl.create({
       subHeader: 'Notificacion',
       message: 'Esta seguro de realizar el pedido?',
@@ -69,13 +80,22 @@ export class OrdenarProductoPageComponent implements OnInit {
         }, {
           text: 'Confirmar',
           handler: () => {
-            console.log('Confirm Okay');
-            this.carga();
-            setTimeout(() => {
-              this.loading.dismiss();
-              this.mensaje('Se realizo correctamente el pedido','checkmark-outline')
-              this.router.navigate(['/dashboard/menu']);
-            }, 2000);
+            if (this.cantidad <= 0 || this.hora_inicio == undefined || this.hora_fin == undefined || this.fechas.length <= 0) {
+              this.mensaje('Faltan campos por llenar', 'warning-outline')
+            } else {
+              //datos para el detalle del pedido
+              console.log('id_producto', this.producto.id_producto);
+              console.log('cantidad', this.cantidad);
+
+              //datos para el pedido
+              console.log('hora inicio', this.hora_inicio);
+              console.log('hora_fin', this.hora_fin);
+              console.log('id_proveedor', this.producto.id_proveedor);
+              console.log('id_colegio', 'falta');
+              console.log('fechas', this.fechas);
+              console.log('fecha de creacion', this.fecha_actual);
+            }
+
           }
         }
       ]
@@ -92,4 +112,23 @@ export class OrdenarProductoPageComponent implements OnInit {
     await this.loading.present();
   }
 
+  private getProducto(id: string) {
+    this._productos.getOneProducto(id).then((resp: any) => {
+      this.producto = resp;
+      console.log(resp);
+    }).catch(e => console.log)
+  }
+
+  public sethorainicio(e: any) {
+    this.hora_inicio = e.detail.value;
+  }
+
+  public sethorafin(e: any) {
+    this.hora_fin = e.detail.value;
+  }
+
+  public setfechas(e: any) {
+    console.log(e.detail.value);
+    this.fechas = e.detail.value;
+  }
 }

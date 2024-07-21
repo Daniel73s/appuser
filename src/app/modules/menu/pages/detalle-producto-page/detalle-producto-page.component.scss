@@ -1,16 +1,11 @@
 .imagen-producto{
-    width: 200px; 
-    height: 200px;
+    width:100%; 
+    height:250px;
     margin: 0 auto;
-    border: 5px solid rgb(255, 247, 244);
     padding: 5px;
+    --border-radius: 15px;
 }
 
-.content-precio{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
 .texto-producto{
     text-align: justify;
     padding:0 10px;
@@ -23,16 +18,13 @@
     font-size: 20px; 
     font-weight: 600;
 }
-.content-detalle-producto{
-    width: 90%;
-    margin: 0 auto;
+
+.texto-nombre{
+    font-weight: 600; 
+    font-size: 30px;
 }
-.content-detalle-producto > table{
-    // border: 2px solid red; 
-    padding: 10px;
-    width: 100%;
-    color: var(--ion-color-secondary);
-}
-.content-detalle-producto > table>tr{
-   height: 30px;
+.img-proveedor{
+    width: 60px;
+    height: 60px;
+    --border-radius: 15px;
 }

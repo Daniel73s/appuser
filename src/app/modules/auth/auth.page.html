@@ -19,18 +19,13 @@
     </ion-row>
     <ion-row  class="ion-justify-content-center">
       <ion-col size="11">
-        <ion-input type="text" placeholder="ingresa tu usuario"></ion-input>
-        <ion-input type="text" placeholder="Contraseña" type="password"></ion-input>
-        <ion-button expand="block" (click)="login()">
-          iniciar sesion
-        </ion-button>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col size="12" class="ion-text-center ion-margin-top">
-        <ion-text color="primary">
-          <span>Olvidaste tu contraseña</span>
-        </ion-text>
+        <form [formGroup]="formlogin" (submit)="login()">
+          <ion-input type="text" placeholder="ingresa tu usuario" formControlName="usuario"></ion-input>
+          <ion-input type="text" placeholder="Contraseña" type="password" formControlName="pass"></ion-input>
+          <ion-button expand="block" type="submit" [disabled]="formlogin.invalid">
+            iniciar sesion
+          </ion-button>
+        </form>
       </ion-col>
     </ion-row>
   </ion-grid>

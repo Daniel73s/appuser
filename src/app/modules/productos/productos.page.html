@@ -1,28 +1,28 @@
 <app-header titulo="Productos"></app-header>
 <ion-content [fullscreen]="true">
-  <ion-segment value="todos">
+  <ion-segment value="todos" (ionChange)="filtrarProducto($event)">
     <ion-segment-button value="todos">
         <ion-label>Todos</ion-label>
     </ion-segment-button>
-    <ion-segment-button value="activos">
+    <ion-segment-button value="activo">
         <ion-label>Activos</ion-label>
     </ion-segment-button>
-    <ion-segment-button value="inactivos">
+    <ion-segment-button value="inactivo">
         <ion-label>Inactivos</ion-label>
     </ion-segment-button>
   </ion-segment>
   <ion-grid fixed>
     <ion-row>
         <ion-col size="12">
-            <ion-item *ngFor="let producto of [1,1,1,1,1]" detail (click)="detalle_producto('123')">
-                <ion-avatar slot="start">
-                    <img [src]="'./assets/img/producto1.jpg'" />
-                </ion-avatar>
+            <ion-item *ngFor="let producto of productos | filterEstado:estado" detail (click)="detalle_producto(producto.id_producto)">
+                <ion-thumbnail slot="start" class="img-producto">
+                    <img [src]="producto.imagen" />
+                </ion-thumbnail>
                 <ion-label class="ion-text-wrap">
-                    <h3>Nombre del producto</h3>
-                    <p>2 Bs</p>
+                    <h3>{{producto.nombre}}</h3>
+                    <p>{{producto.precio_unitario}} Bs</p>
                 </ion-label>
-                <!-- <ion-badge slot="end" color="success" mode="ios">Activo</ion-badge> -->
+                <ion-badge slot="end" [color]="producto.estado=='activo'?'success':'warning'" mode="ios">{{producto.estado}}</ion-badge>
             </ion-item>
         </ion-col>
     </ion-row>

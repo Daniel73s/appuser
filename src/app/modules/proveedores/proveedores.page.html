@@ -10,10 +10,10 @@
     </ion-row>
     <ion-row>
       <ion-col size="12">
-        <ion-searchbar placeholder="Buscar proveedor" type="text"></ion-searchbar>
+        <ion-searchbar placeholder="Buscar proveedor" type="text" (ionInput)="buscar($event)"></ion-searchbar>
       </ion-col>
     </ion-row>
-    <ion-row>
+    <!-- <ion-row>
       <ion-col size="12">
         <ion-list>
           <ion-list-header>
@@ -23,7 +23,7 @@
         <ion-row>
           <ion-col size="12" class="ion-text-center">
             <swiper-container pagination="false" [slidesPerView]="1.5">
-              <swiper-slide *ngFor="let item of [1,1,1,1,1,1]">
+              <swiper-slide *ngFor="let item of proveedores">
                 <ion-card (click)="opencatalogo('123')">
                   <ion-card-header>
                     <ion-card-subtitle>nombre de proveedor</ion-card-subtitle>
@@ -40,7 +40,7 @@
           </ion-col>
         </ion-row>
       </ion-col>
-    </ion-row>
+    </ion-row> -->
     <ion-row>
       <ion-col size="12">
         <ion-list>
@@ -49,15 +49,22 @@
           </ion-list-header>
         </ion-list>
         <ion-row>
-          <ion-col size="6" *ngFor="let item of [1,1,1,1,1,1,1,1,1]">
-            <ion-card mode="md" (click)="opencatalogo('123')">
-              <ion-card-header>
-                <ion-card-subtitle>Nombre de proveedor</ion-card-subtitle>
-                <!-- <ion-card-title>Compañía Suministros Innovadores</ion-card-title> -->
+          <ion-col size="12" *ngFor="let proveedor of proveedores | filter:texto:'razon_social'">
+            <ion-card mode="md">
+              <ion-card-header class="ion-text-center">
+                <ion-thumbnail class="imagen-pro">
+                  <img [src]="proveedor.imagen" />
+                </ion-thumbnail>
+                <ion-card-subtitle>
+                  <p>{{proveedor.razon_social}}</p>
+                  <ion-chip color="success" mode="md" outline="false" (click)="llamarproveedor(proveedor.celular)">
+                    <ion-label>{{proveedor.celular}}</ion-label>
+                  </ion-chip>
+                </ion-card-subtitle>
               </ion-card-header>
               <ion-card-content>
-                <ion-button expand="full" class="btn-catalogo">
-                  catalogo
+                <ion-button expand="full" class="btn-catalogo" (click)="openperfilproveedor(proveedor.id_proveedor)">
+                  ver Proveedor
                 </ion-button>
               </ion-card-content>
             </ion-card>

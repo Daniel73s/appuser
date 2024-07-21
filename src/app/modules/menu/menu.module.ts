@@ -12,13 +12,15 @@ import { CategoriaProductosPageComponent } from './pages/categoria-productos-pag
 import { DetalleProductoPageComponent } from './pages/detalle-producto-page/detalle-producto-page.component';
 import { OrdenarProductoPageComponent } from './pages/ordenar-producto-page/ordenar-producto-page.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { PipesModule } from 'src/app/helpers/pipes/pipes.module';
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
     MenuPageRoutingModule,
-    ComponentsModule
+    ComponentsModule,
+    PipesModule
   ],
   declarations: [MenuPage,
     CategoriaProductosPageComponent,

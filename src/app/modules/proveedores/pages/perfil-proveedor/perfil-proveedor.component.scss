@@ -1,0 +1,21 @@
+.avatar {
+    width: 150px;
+    height: 150px;
+    padding: 5px;
+    --border-radius: 15px;
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.btn-pro{
+    --box-shadow: none;
+}

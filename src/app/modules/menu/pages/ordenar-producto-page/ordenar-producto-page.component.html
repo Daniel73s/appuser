@@ -2,46 +2,29 @@
 <ion-content>
   <ion-grid fixed>
     <ion-row>
-      <ion-col size="12">
+      <ion-col size="12" *ngIf="producto">
         <ion-item lines="none">
-          <ion-avatar slot="start">
-            <img src="./assets/img/producto1.jpg" />
-          </ion-avatar>
-          <ion-label color="secondary">
-            <h3>Ensalada de frutas</h3>
-            <p>2 Bs</p>
+          <ion-thumbnail slot="start" class="img-producto">
+            <img [src]="producto.imagen" />
+          </ion-thumbnail>
+          <ion-label color="secondary" class="ion-text-wrap">
+            <h1>{{producto.nombre}}</h1>
+            <p>{{producto.categoria}}</p>
           </ion-label>
-          <ion-badge slot="end" color="primary" mode="ios">Frutas</ion-badge>
+          <ion-badge slot="end" color="primary" mode="ios">{{producto.precio_unitario}} Bs</ion-badge>
         </ion-item>
       </ion-col>
       <ion-col size="12">
         <ion-text color="secondary">
-          <span style="font-weight: 500;">Cantidad Deseable</span>
+          <span class="texto-subtitulo">Fecha de entrega</span>
         </ion-text>
-        <br>
-        <br>
-        <ion-item lines="none">
-          <ion-button slot="start" fill="clear" (click)="disminuir()">
-            <ion-icon slot="icon-only" name="remove-outline"></ion-icon>
-          </ion-button>
-          <ion-input labelPlacement="stacked" type="number" [(ngModel)]="cantidad" style="text-align: center;"></ion-input>
-          <ion-button slot="end" fill="clear" (click)="aumentar()">
-            <ion-icon slot="icon-only" name="add-outline"></ion-icon>
-          </ion-button>
-        </ion-item>
-
-      </ion-col>
-      <ion-col size="12">
-        <ion-text color="secondary">
-          <span style="font-weight: 500;">Fecha de entrega</span>
-        </ion-text>
-        <ion-datetime [min]="fecha_actual" presentation="date" locale="es-ES" size="cover" [multiple]="true">
-          <!-- <span slot="time-label">Hora de entrega</span> -->
+        <ion-datetime (ionChange)="setfechas($event)" [min]="fecha_actual" presentation="date" locale="es-ES" size="cover" [multiple]="true">
+          
         </ion-datetime>
       </ion-col>
       <ion-col size="12">
         <ion-text color="secondary">
-          <span style="font-weight: 500;">Hora estimada para la entrega de pedidos</span>
+          <span class="texto-subtitulo">Hora estimada para la entrega de pedidos</span>
         </ion-text>
         <!-- <ion-datetime presentation="time" locale="es-ES" size="cover"></ion-datetime>
          -->
@@ -59,14 +42,15 @@
     </ion-button>
   </ion-toolbar>
 </ion-footer>
+
 <ion-modal [keepContentsMounted]="true">
   <ng-template>
-    <ion-datetime id="hora-before" mode="ios" done-text="Ok" presentation="time" [hourValues]="horasPermitidas" minute-values="0,15,30,45" ></ion-datetime>
+    <ion-datetime (ionChange)="sethorainicio($event)" display-format="HH:mm" id="hora-before" mode="md" done-text="Ok" presentation="time" [hourValues]="horasPermitidas" minute-values="0,15,30,45" ></ion-datetime>
   </ng-template>
 </ion-modal>
 
 <ion-modal [keepContentsMounted]="true">
   <ng-template>
-    <ion-datetime id="hora-after" mode="ios" presentation="time" [hourValues]="horasPermitidas" minute-values="0,15,30,45" ></ion-datetime>
+    <ion-datetime (ionChange)="sethorafin($event)" id="hora-after" mode="ios" presentation="time" [hourValues]="horasPermitidas" minute-values="0,15,30,45" ></ion-datetime>
   </ng-template>
 </ion-modal>

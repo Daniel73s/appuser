@@ -8,6 +8,8 @@ import { Component, Input, OnInit } from '@angular/core';
 export class HeaderSubpageComponent  implements OnInit {
 @Input()
 public titulo:string='';
+@Input()
+public href:string='';
   constructor() { }
 
   ngOnInit() {}

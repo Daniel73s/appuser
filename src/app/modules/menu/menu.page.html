@@ -7,7 +7,9 @@
         <ion-text color="secondary">
           <h1 class="titulo">Descubre tu menu favorito</h1>
         </ion-text>
-        <ion-searchbar placeholder="Busca tu producto" [debounce]="250"></ion-searchbar>
+        <ion-item lines="none">
+          <ion-searchbar (ionInput)="buscar($event)" placeholder="Busca tu producto" [debounce]="250"></ion-searchbar>
+        </ion-item>
       </ion-col>
     </ion-row>
     <ion-row>
@@ -19,16 +21,14 @@
         </ion-list>
         <ion-row class="ion-text-center">
           <ion-col size="12">
-            <swiper-container pagination="false" [slidesPerView]="3.2" >
-              <swiper-slide *ngFor="let categoria of categorias">
-                <ion-chip color="secondary" mode="md" outline="false" (click)="showcategoria('123')">
-                  <ion-avatar>
-                    <img [src]="categoria.img" />
-                  </ion-avatar>
-                  <ion-label>{{categoria.titulo}}</ion-label>
-                </ion-chip>
-              </swiper-slide>
-            </swiper-container>
+            <ion-segment #segment_categoria scrollable="true" mode="md" value="todos" (ionChange)="segment($event)">
+              <ion-segment-button value="todos">
+                <ion-label>Todos</ion-label>
+              </ion-segment-button>
+              <ion-segment-button *ngFor="let categoria of categorias" [value]="categoria.id_categoria">
+                <ion-label>{{categoria.nombre}}</ion-label>
+              </ion-segment-button>
+            </ion-segment>
           </ion-col>
         </ion-row>
       </ion-col>
@@ -39,55 +39,28 @@
           <ion-list-header>
             <ion-label class="subtitulo">Menu de productos</ion-label>
           </ion-list-header>
+
+          <ion-item>
+            <ion-select (ionChange)="filtrarprecio($event)" label="Precio" value="" label-placement="fixed" placeholder="Precio">
+              <ion-select-option value="">cualquiera</ion-select-option>
+              <ion-select-option value="1">1 Bs</ion-select-option>
+              <ion-select-option value="2">2 Bs</ion-select-option>
+            </ion-select>
+          </ion-item>
         </ion-list>
+        <ion-row *ngIf="productos.length>0">
+          <ion-col size="6" *ngFor="let producto of productos | filterMenu:texto:preciobuscar">
+            <img (click)="detalleProducto(producto.id_producto)" [src]="producto.imagen" class="img-producto"
+              alt="no se encontro la imagen">
+            <ion-item class="texto-producto">
+              <ion-label class="ion-text-wrap">{{producto.nombre}} </ion-label>
+              <ion-badge slot="end" mode="md">{{producto.precio_unitario}}Bs</ion-badge>
+            </ion-item>
+          </ion-col>
+        </ion-row>
         <ion-row>
-          <ion-col size="6">
-            <img (click)="detalle('132')" src="./assets/img/producto1.jpg" class="img-producto" alt="no se encontro la imagen">
-            <div class="texto-producto">
-              Ensalada de frutas
-              <div style="display: flex; justify-content: space-between; align-items: center;">
-                <span>2Bs</span>
-                <ion-button fill="clear" (click)="ordenar('123')">
-                  <ion-icon slot="icon-only" name="add-outline"></ion-icon>
-                </ion-button>
-              </div>
-            </div>
-          </ion-col>
-          <ion-col size="6">
-            <img (click)="detalle('132')" src="./assets/img/producto2.jpg" class="img-producto" alt="no se encontro la imagen">
-            <div class="texto-producto">
-              Barra de cereal
-              <div style="display: flex; justify-content: space-between; align-items: center;">
-                <span>2Bs</span>
-                <ion-button fill="clear" (click)="ordenar('123')">
-                  <ion-icon slot="icon-only" name="add-outline"></ion-icon>
-                </ion-button>
-              </div>
-            </div>
-          </ion-col>
-          <ion-col size="6">
-            <img (click)="detalle('132')" src="./assets/img/producto3.jpg" class="img-producto" alt="no se encontro la imagen">
-            <div class="texto-producto">
-              Manzanas
-              <div style="display: flex; justify-content: space-between; align-items: center;">
-                <span>1Bs</span>
-                <ion-button fill="clear" (click)="ordenar('123')">
-                  <ion-icon slot="icon-only" name="add-outline"></ion-icon>
-                </ion-button>
-              </div>
-            </div>
-          </ion-col>
-          <ion-col size="6">
-            <img (click)="detalle('132')" src="./assets/img/producto4.jpg" class="img-producto" alt="no se encontro la imagen">
-            <div class="texto-producto">
-              Karpil (pil)
-              <div style="display: flex; justify-content: space-between; align-items: center;">
-                <span>1Bs</span>
-                <ion-button fill="clear" (click)="ordenar('123')">
-                  <ion-icon slot="icon-only" name="add-outline"></ion-icon>
-                </ion-button>
-              </div>
-            </div>
+          <ion-col *ngIf="productos.length<=0" size="12" class="ion-text-center">
+            <h2>No se encontraron Productos</h2>
           </ion-col>
         </ion-row>
       </ion-col>

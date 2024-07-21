@@ -12,15 +12,15 @@ const routes: Routes = [
     component: MenuPage
   },
   {
-    path:'categoria',
+    path:'categoria/:id',
     component:CategoriaProductosPageComponent
   },
   {
-    path:'detalle-producto',
+    path:'detalle-producto/:id',
     component:DetalleProductoPageComponent
   },
   {
-    path:'ordenar-producto',
+    path:'ordenar-producto/:id',
     component:OrdenarProductoPageComponent
   }
 ];

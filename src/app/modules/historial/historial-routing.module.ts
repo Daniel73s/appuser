@@ -7,7 +7,7 @@ import { DetallePedidoComponent } from './pages/detalle-pedido/detalle-pedido.co
 
 const routes: Routes = [
   {
-    path: '',
+    path: ':id_proveedor',
     component: HistorialPage
   },
   {
@@ -15,7 +15,7 @@ const routes: Routes = [
     component:CalendarioPedidosComponent
   },
   {
-    path:'detalle-pedido',
+    path:'detalle-pedido/:id_pedido',
     component:DetallePedidoComponent
   }
 

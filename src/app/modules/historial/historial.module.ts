@@ -11,6 +11,7 @@ import { ComponentsModule } from 'src/app/components/components.module';
 import { CalendarioPedidosComponent } from './pages/calendario-pedidos/calendario-pedidos.component';
 import { DetallePedidoComponent } from './pages/detalle-pedido/detalle-pedido.component';
 import { MapaComponent } from './modals/mapa/mapa.component';
+import { PipesModule } from 'src/app/helpers/pipes/pipes.module';
 
 @NgModule({
   imports: [
@@ -18,7 +19,8 @@ import { MapaComponent } from './modals/mapa/mapa.component';
     FormsModule,
     IonicModule,
     HistorialPageRoutingModule,
-    ComponentsModule
+    ComponentsModule,
+    PipesModule
   ],
   declarations: [HistorialPage,CalendarioPedidosComponent,DetallePedidoComponent,MapaComponent]
 })

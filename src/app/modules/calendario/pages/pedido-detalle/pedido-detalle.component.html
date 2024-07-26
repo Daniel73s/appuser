@@ -1,0 +1,67 @@
+<app-header-subpage></app-header-subpage>
+<ion-content *ngIf="pedido">
+  <ion-grid fixed class="ion-padding">
+    <ion-row>
+      <ion-col size="12">
+        <ion-thumbnail class="imagen-producto">
+          <ion-img [src]="pedido.imagen_producto"></ion-img>
+        </ion-thumbnail>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <ion-text color="secondary">
+          <h1 class="texto-nombre">{{pedido.producto}}</h1>
+        </ion-text>
+        <ion-item lines="none">
+          <ion-thumbnail slot="start" class="img-proveedor">
+            <img [src]="pedido.imagen_proveedor" />
+          </ion-thumbnail>
+          <ion-label class="ion-text-wrap">
+            <h2>{{pedido.proveedor}}</h2>
+          </ion-label>
+         <ion-chip color="primary" mode="md" outline="false" (click)="llamarProveedor(pedido.celular_proveedor)">
+          <ion-icon name="call-outline"></ion-icon>
+          <ion-label>Llamar</ion-label>
+         </ion-chip>
+        </ion-item>
+      </ion-col>
+      <ion-col size="12">
+        <ion-item>
+          <ion-label>Estado del pedido</ion-label>
+          <ion-badge color="primary" slot="end" *ngIf="pedido.estado_pedido=='entregado'" mode="ios">{{pedido.estado_pedido}}</ion-badge>
+          <ion-badge color="danger" slot="end" *ngIf="pedido.estado_pedido=='rechazado'" mode="ios">{{pedido.estado_pedido}}</ion-badge>
+          <ion-badge color="success" slot="end" *ngIf="pedido.estado_pedido=='confirmado'" mode="ios">{{pedido.estado_pedido}}</ion-badge>
+          <ion-badge color="warning" slot="end" *ngIf="pedido.estado_pedido=='pendiente'" mode="ios">{{pedido.estado_pedido}}</ion-badge>
+        </ion-item>
+      </ion-col>
+      <ion-col size="12">
+        <ion-item>
+          <ion-label>Fecha de creacion</ion-label>
+          <ion-label slot="end">
+            <p>{{pedido.fecha_creacion | date:'YYYY-MM-dd'}}</p>
+          </ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col size="12">
+        <ion-item>
+          <ion-label>Fecha de entrega</ion-label>
+          <ion-label slot="end">
+            <p>{{pedido.fecha_entrega | date:'YYYY-MM-dd'}}</p>
+          </ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col size="12">
+        <ion-item>
+          <ion-label>Hora estimada</ion-label>
+          <ion-label slot="end">
+            <p>
+              de {{pedido.hora_inicio  | slice:0:5 }} a {{pedido.hora_fin  | slice:0:5 }}
+            </p>
+            </ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

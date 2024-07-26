@@ -39,17 +39,17 @@
           <ion-list-header>
             <ion-label class="subtitulo">Menu de productos</ion-label>
           </ion-list-header>
-
           <ion-item>
-            <ion-select (ionChange)="filtrarprecio($event)" label="Precio" value="" label-placement="fixed" placeholder="Precio">
-              <ion-select-option value="">cualquiera</ion-select-option>
-              <ion-select-option value="1">1 Bs</ion-select-option>
-              <ion-select-option value="2">2 Bs</ion-select-option>
+            <ion-select (ionChange)="filtrarprecio($event)" label="Tipo" value="" label-placement="fixed" placeholder="Tipo">
+              <ion-select-option value="">Cualquiera</ion-select-option>
+              <ion-select-option value="liquido">Liquido</ion-select-option>
+              <ion-select-option value="solido">Solido</ion-select-option>
+              <ion-select-option value="otro">Otro</ion-select-option>
             </ion-select>
           </ion-item>
         </ion-list>
         <ion-row *ngIf="productos.length>0">
-          <ion-col size="6" *ngFor="let producto of productos | filterMenu:texto:preciobuscar">
+          <ion-col size="6" *ngFor="let producto of productos | filterMenu:texto:tipobuscar">
             <img (click)="detalleProducto(producto.id_producto)" [src]="producto.imagen" class="img-producto"
               alt="no se encontro la imagen">
             <ion-item class="texto-producto">

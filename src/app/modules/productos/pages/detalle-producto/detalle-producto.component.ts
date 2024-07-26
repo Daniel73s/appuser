@@ -80,26 +80,31 @@ export class DetalleProductoComponent implements OnInit{
   }
 
   public actualizarImagen() {
-    this.loadingComponent();
-    const id_imagen = this.getIdImage(this.lasturl);
-    this._uploads.updateImageCloudinary(id_imagen, this.selectedFile).then((resp: any) => {
-      this._productos.updateImage(this.id_producto, resp.url_image).then((resp: any) => {
-        console.log(resp);
-        this.mensaje(resp.mensaje, 'success');
-        this.router.navigate(['/dashboard/productos/', this.id_proveedor])
-      }).catch(e => {
-        console.log(e);
-        this.mensaje('ocurrio un error inesperado al guardar los datos', 'danger');
-      })
-        .finally(() => {
-          this.loading.dismiss();
+    if(this.selectedFile){
+      this.loadingComponent();
+      const id_imagen = this.getIdImage(this.lasturl);
+      this._uploads.updateImageCloudinary(id_imagen, this.selectedFile).then((resp: any) => {
+        this._productos.updateImage(this.id_producto, resp.url_image).then((resp: any) => {
+          console.log(resp);
+          this.mensaje(resp.mensaje, 'success');
+          this.router.navigate(['/dashboard/productos/', this.id_proveedor]);
+        }).catch(e => {
+          console.log(e);
+          this.mensaje('ocurrio un error inesperado al guardar los datos', 'danger');
         })
-    }).catch((e: any) => {
-      console.log('ocurrio este error', e);
-      this.mensaje('ocurrio un error inesperado', 'danger');
-    }).finally(() => {
-      this.loading.dismiss();
-    })
+          .finally(() => {
+            this.loading.dismiss();
+          })
+      }).catch((e: any) => {
+        console.log('ocurrio este error', e);
+        this.mensaje('ocurrio un error inesperado', 'danger');
+      }).finally(() => {
+        this.loading.dismiss();
+      })
+    }else{
+      this.mensaje('Seleccione una imagen','danger');
+    }
+
   }
 
   private getIdImage(url: string): string {

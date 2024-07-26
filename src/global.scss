@@ -37,3 +37,8 @@
     --height:50%;
     --border-radius:10px;
   }
+
+  .btn_danger{
+    --button-color: var(--ion-color-danger);
+    --background:var(--ion-color-danger);
+  }

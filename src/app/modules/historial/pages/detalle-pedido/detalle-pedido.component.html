@@ -1,17 +1,21 @@
 <app-header-subpage></app-header-subpage>
-<ion-content>
+<ion-content *ngIf="pedido">
   <ion-grid fixed>
     <ion-row>
       <ion-col size="12">
         <ion-item lines="none">
-          <ion-avatar slot="start"  class="avatar">
-            <img src="./assets/img/producto1.jpg" />
-          </ion-avatar>
+          <ion-thumbnail slot="start"  class="avatar">
+            <img [src]="pedido.imagen_producto" />
+          </ion-thumbnail>
           <ion-label>
-            <h3>Ensalada de Frutas</h3>
-            <ion-badge color="primary" mode="ios">Frutas del paraizo</ion-badge>
+            <h3>{{pedido.producto}}</h3>
           </ion-label>
-          <ion-badge color="secondary" mode="ios">2 Bs</ion-badge>
+          <ion-badge [color]="
+          pedido.estado_pedido=='pendiente'?'warning':
+          pedido.estado_pedido=='confirmado'?'success':
+          pedido.estado_pedido=='rechazado'?'danger':
+          pedido.estado_pedido=='entregado'?'primary':'secondary'
+          " mode="ios">{{pedido.estado_pedido}}</ion-badge>
         </ion-item>
       </ion-col>
     </ion-row>
@@ -23,38 +27,56 @@
           </ion-card-header>
           <ion-card-content>
             <ion-item>
+              <ion-icon name="shield-half-outline" slot="start"></ion-icon>
+              <ion-label class="ion-text-wrap">
+                <h3>Colegio</h3>
+                <p>{{pedido.colegio}}</p>
+              </ion-label>
+              <ion-chip slot="end" color="success" mode="md" outline="false">
+                <ion-icon slot="start" name="call-outline"></ion-icon>
+                <ion-label>Llamar</ion-label>
+              </ion-chip>
+             </ion-item>
+             <ion-item>
+              <ion-icon name="person-outline" slot="start"></ion-icon>
+              <ion-label class="ion-text-wrap">
+                <h3>Proveedor</h3>
+                <p>{{pedido.proveedor}}</p>
+              </ion-label>
+             </ion-item>
+            <ion-item>
               <ion-icon name="fast-food-outline" slot="start"></ion-icon>
               <ion-label class="ion-text-wrap">
                 <h3>Producto</h3>
-                <p>Ensalada de frutas</p>
+                <p>{{pedido.producto}}</p>
               </ion-label>
              </ion-item>
            <ion-item>
             <ion-icon name="flag-outline" slot="start"></ion-icon>
             <ion-label>
               <h3>Cantidad</h3>
-              <p>350 Unidades</p>
+              <p>{{pedido.cantidad}} Unidades</p>
             </ion-label>
            </ion-item>
            <ion-item>
             <ion-icon name="cash-outline" slot="start"></ion-icon>
             <ion-label>
               <h3>Precio Unitario</h3>
-              <p>2 Bs</p>
+              <p>{{pedido.precio_unitario}} Bs</p>
             </ion-label>
            </ion-item>
            <ion-item>
             <ion-icon name="calendar-number-outline" slot="start"></ion-icon>
             <ion-label>
               <h3>Fecha de entrega</h3>
-              <p>28/10/2023</p>
+              <p>{{pedido.fecha_entrega | date:'YYYY-MM-dd'}}</p>
             </ion-label>
            </ion-item>
            <ion-item>
             <ion-icon name="alarm-outline" slot="start"></ion-icon>
             <ion-label>
               <h3>Horario de entrega</h3>
-              <p>de 7:00 am a 10:00 am</p>
+              <p>de {{pedido.hora_inicio | slice:0:5}} a {{pedido.hora_fin | slice:0:5}}</p>
             </ion-label>
            </ion-item>
           </ion-card-content>
@@ -72,17 +94,10 @@
             <ion-icon name="pin-outline" slot="start"></ion-icon>
             <ion-label class="ion-text-wrap">
                 <h3>Ubicacion</h3>
-                <p>Entre calles domingo paz y campero</p>
+                <p>{{pedido.zona_colegio}}, {{pedido.calle_colegio}}</p>
             </ion-label>
            </ion-item>
-           <ion-item>
-            <ion-icon name="navigate-outline" slot="start"></ion-icon>
-            <ion-label class="ion-text-wrap">
-              <h3>Referencia</h3>
-              <p>Al lado de la libreria yireh puerta roja.</p>
-            </ion-label>
-           </ion-item>
-           <ion-button expand="block" fill="clear" (click)="abrir_mapa()" >
+           <ion-button expand="block" fill="clear" (click)="abrir_mapa(pedido.longitud,pedido.latitud)" >
             Abrir ubicacion en el mapa
            </ion-button>
           </ion-card-content>
@@ -91,9 +106,9 @@
     </ion-row>
   </ion-grid>
 </ion-content>
-<ion-footer class="ion-no-border">
-  <ion-toolbar color="primary">
-    <ion-button expand="block" class="btn-entregar">
+<ion-footer class="ion-no-border" *ngIf="pedido">
+  <ion-toolbar color="primary" *ngIf="pedido.estado_pedido=='confirmado'">
+    <ion-button expand="block" class="btn-entregar" (click)="alerta(pedido.id_pedido)">
       Entregar pedido
     </ion-button>
   </ion-toolbar>

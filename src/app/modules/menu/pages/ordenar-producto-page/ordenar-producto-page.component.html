@@ -18,26 +18,35 @@
         <ion-text color="secondary">
           <span class="texto-subtitulo">Fecha de entrega</span>
         </ion-text>
-        <ion-datetime (ionChange)="setfechas($event)" [min]="fecha_actual" presentation="date" locale="es-ES" size="cover" [multiple]="true">
-          
+        <ion-datetime (ionChange)="setfechas($event)"  [min]="fecha_actual" [highlightedDates]="pedidos_realizados" presentation="date" locale="es-ES" size="cover" [multiple]="true" [isDateEnabled]="isWeekday">
         </ion-datetime>
+      </ion-col>
+      <ion-col size="12">
+        <ion-item>
+          <ion-label>Numero de Pedidos</ion-label>
+          <ion-label slot="end" *ngIf="!fechas" >Ninguno</ion-label>
+          <ion-label  slot="end" *ngIf="fechas">
+            <h1>{{fechas.length || 'Ninguno'}}</h1>
+          </ion-label>
+        </ion-item>
       </ion-col>
       <ion-col size="12">
         <ion-text color="secondary">
           <span class="texto-subtitulo">Hora estimada para la entrega de pedidos</span>
         </ion-text>
-        <!-- <ion-datetime presentation="time" locale="es-ES" size="cover"></ion-datetime>
-         -->
          <div class="content-hora">
            <span>De</span> <ion-datetime-button datetime="hora-before" ></ion-datetime-button> Hasta <ion-datetime-button datetime="hora-after" ></ion-datetime-button>
          </div>
+      </ion-col>
+      <ion-col size="12" *ngIf="nopermitido!=''">
+        <ion-note color="danger">Error el proveedor no puede aceptar mas pedidos esta fecha ({{nopermitido}})</ion-note>
       </ion-col>
     </ion-row>
   </ion-grid>
 </ion-content>
 <ion-footer class="ion-no-border">
   <ion-toolbar color="primary">
-    <ion-button expand="full" class="btn-ordenar" (click)="alerta()">
+    <ion-button expand="full" [disabled]="!fechas" class="btn-ordenar" (click)="alerta()">
       Confirmar Pedido
     </ion-button>
   </ion-toolbar>
@@ -45,12 +54,12 @@
 
 <ion-modal [keepContentsMounted]="true">
   <ng-template>
-    <ion-datetime (ionChange)="sethorainicio($event)" display-format="HH:mm" id="hora-before" mode="md" done-text="Ok" presentation="time" [hourValues]="horasPermitidas" minute-values="0,15,30,45" ></ion-datetime>
+    <ion-datetime (ionChange)="sethorainicio($event)" display-format="HH:mm" id="hora-before" mode="md" done-text="Ok" presentation="time"  minute-values="0,15,30,45" ></ion-datetime>
   </ng-template>
 </ion-modal>
 
 <ion-modal [keepContentsMounted]="true">
   <ng-template>
-    <ion-datetime (ionChange)="sethorafin($event)" id="hora-after" mode="ios" presentation="time" [hourValues]="horasPermitidas" minute-values="0,15,30,45" ></ion-datetime>
+    <ion-datetime (ionChange)="sethorafin($event)" id="hora-after" mode="ios" presentation="time"  minute-values="0,15,30,45" ></ion-datetime>
   </ng-template>
 </ion-modal>

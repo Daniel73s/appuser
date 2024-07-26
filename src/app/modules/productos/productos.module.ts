@@ -10,6 +10,7 @@ import { ProductosPage } from './productos.page';
 import { ComponentsModule } from 'src/app/components/components.module';
 import { PipesModule } from 'src/app/helpers/pipes/pipes.module';
 import { DetalleProductoComponent } from './pages/detalle-producto/detalle-producto.component';
+import { AddProductoComponent } from './pages/add-producto/add-producto.component';
 
 @NgModule({
   imports: [
@@ -21,6 +22,6 @@ import { DetalleProductoComponent } from './pages/detalle-producto/detalle-produ
     PipesModule,
     ReactiveFormsModule
   ],
-  declarations: [ProductosPage,DetalleProductoComponent]
+  declarations: [ProductosPage,DetalleProductoComponent,AddProductoComponent]
 })
 export class ProductosPageModule {}

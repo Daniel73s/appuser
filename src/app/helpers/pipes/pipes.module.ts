@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FilterPipe } from './filter.pipe';
 import { FilterMenuPipe } from './filter-menu.pipe';
 import { FilterEstadoPipe } from './filter-estado.pipe';
+import { FilterPedidoPipe } from './filter-pedido.pipe';
 
 
 
@@ -10,7 +11,8 @@ import { FilterEstadoPipe } from './filter-estado.pipe';
   declarations: [
     FilterPipe,
     FilterMenuPipe,
-    FilterEstadoPipe
+    FilterEstadoPipe,
+    FilterPedidoPipe
   ],
   imports: [
     CommonModule
@@ -18,7 +20,8 @@ import { FilterEstadoPipe } from './filter-estado.pipe';
   exports:[
     FilterPipe,
     FilterMenuPipe,
-    FilterEstadoPipe
+    FilterEstadoPipe,
+    FilterPedidoPipe
   ]
 })
 export class PipesModule { }

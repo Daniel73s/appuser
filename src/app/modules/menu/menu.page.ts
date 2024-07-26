@@ -14,7 +14,7 @@ export class MenuPage {
   public categorias: any[] = [];
   public productos: any[] = [];
   public texto: string = '';
-  public preciobuscar:string='';
+  public tipobuscar:string='';
   @ViewChild('segment_categoria') cat_segmnet!:IonSegment;
   constructor(private router: Router,
     private _categorias: CategoriasService,
@@ -37,7 +37,6 @@ export class MenuPage {
   private getProductos() {
     this._productos.getProductos().then((resp: any) => {
       this.productos = resp;
-      console.log(this.productos);
       
     }).catch(e => console.log)
   }
@@ -72,6 +71,6 @@ export class MenuPage {
   }
 
   public filtrarprecio(e:any){
-    this.preciobuscar=e.detail.value;
+    this.tipobuscar=e.detail.value;
   }
 }

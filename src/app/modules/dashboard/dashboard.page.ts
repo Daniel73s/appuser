@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { StorageService } from 'src/app/services/storage.service';
 import { UsuarioService } from './services/usuario.service';
-import { jwtDecode } from 'jwt-decode';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.page.html',
@@ -22,8 +21,8 @@ export class DashboardPage {
   }
 
   public salir() {
-    this._storage.deleteToken().then(()=>{
-      this._storage.deleteDataUser().then(()=>{
+    this._storage.deleteToken().then(() => {
+      this._storage.deleteDataUser().then(() => {
         this.router.navigate(['/auth']);
       })
     })
@@ -31,22 +30,21 @@ export class DashboardPage {
 
 
   public getUsuario() {
-    console.log('se ejecuta esto');
     this._storage.getDataUser().then((resp: any) => {
-      this.user=resp;
-      console.log(this.user);
+      this.user = resp;
       if (resp.rol == 'COLEGIO') {
         this.appPages = [
           { title: 'Catalogo de productos', url: '/dashboard/menu', icon: 'fast-food' },
           { title: 'Proveedores', url: '/dashboard/proveedores', icon: 'people' },
-          { title: 'Calendario', url: '/dashboard/calendario', icon: 'calendar' },
+          { title: 'Calendario', url: `/dashboard/calendario/${resp.id_colegio}`, icon: 'calendar' },
         ]
-      } else {
+        this.router.navigate(['/dashboard/menu']);
+      } else if (resp.rol == 'PROVEEDOR') {
         this.appPages = [
-          { title: 'Mis Productos', url: '/dashboard/productos', icon: 'list' },
-          { title: 'Historial', url: '/dashboard/historial', icon: 'cart' },
-          
+          { title: 'Mis Productos', url: `/dashboard/productos/${resp.id_proveedor}`, icon: 'list' },
+          { title: 'Historial', url: `/dashboard/historial/${resp.id_proveedor}`, icon: 'cart' },
         ]
+        this.router.navigate(['/dashboard/productos/', resp.id_proveedor]);
       }
     });
   }

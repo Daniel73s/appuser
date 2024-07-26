@@ -20,4 +20,18 @@ export class ProductosService {
   public updateProducto(id: string, producto: any) {
     return this.http.patch(`${this.url}/${id}`, producto).toPromise();
   }
+
+   //crear nuevo producto
+   public createProducto(producto: any) {
+    return this.http.post(`${this.url}`, producto).toPromise();
+  }
+
+  //Asignar nuevo producto a un proveedor
+  public asignarProducto(id_producto:string,id_proveedor:string) {
+    return this.http.post(`${this.url}/asignar`,{id_producto,id_proveedor}).toPromise();
+  }
+  //actualizar el estado del producto a activo o inactivo
+  async updateEstadoProducto(id: string, estado: string) {
+    return this.http.patch(`${this.url}/estado/${id}`, { estado }).toPromise();
+  }
 }

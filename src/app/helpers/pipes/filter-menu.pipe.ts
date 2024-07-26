@@ -6,17 +6,17 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class FilterMenuPipe implements PipeTransform {
 
   //METODOS 1 (estatico)
-  transform(arr: any[], textoBuscarNombre: string, textoBuscarPrecio: string): any[] {
-    if (!textoBuscarNombre && !textoBuscarPrecio) {
+  transform(arr: any[], textoBuscarNombre: string, textoBuscarTipo: string): any[] {
+    if (!textoBuscarNombre && !textoBuscarTipo) {
       return arr;
     }
 
     textoBuscarNombre = textoBuscarNombre ? textoBuscarNombre.toUpperCase() : '';
-    textoBuscarPrecio = textoBuscarPrecio ? textoBuscarPrecio : '';
+    textoBuscarTipo = textoBuscarTipo ? textoBuscarTipo : '';
 
     return arr.filter(item => {
       const matchesNombre = textoBuscarNombre ? item['nombre'].toString().toUpperCase().includes(textoBuscarNombre) : true;
-      const matchesPrecio = textoBuscarPrecio ? item['precio_unitario'].toString().includes(textoBuscarPrecio) : true;
+      const matchesPrecio = textoBuscarTipo ? item['tipo'].toString().includes(textoBuscarTipo) : true;
       return matchesNombre && matchesPrecio;
     });
   }

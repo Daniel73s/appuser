@@ -1,0 +1,42 @@
+<app-header></app-header>
+
+<ion-content [fullscreen]="true">
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col size="12">
+        <ion-text color="secondary">
+          <h2>Bienvenido al Calendario de pedidos</h2>
+        </ion-text>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <ion-datetime #datetime presentation="date" (ionChange)="getPedido($event)" [highlightedDates]="pedidos_realizados"
+          size="cover"></ion-datetime>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="pedido">
+      <ion-col size="12">
+        <ion-list>
+          <ion-list-header>
+            <ion-label>Pedido</ion-label>
+          </ion-list-header>
+          <ion-item (click)="PedidoDetalle(pedido.id_pedido)">
+            <ion-thumbnail slot="start" class="img-producto">
+              <img [src]="pedido.imagen_producto" />
+            </ion-thumbnail>
+            <ion-label>
+              <h3>{{pedido.producto}}</h3>
+              <p>Entrega para el {{pedido.fecha_entrega | date:'YYYY-MM-dd'}}</p>
+            </ion-label>
+            <ion-badge color="warning"  *ngIf="pedido.estado=='pendiente'" mode="ios">{{pedido.estado}}</ion-badge>
+            <ion-badge color="success"  *ngIf="pedido.estado=='confirmado'" mode="ios">{{pedido.estado}}</ion-badge>
+            <ion-badge color="danger"  *ngIf="pedido.estado=='rechazado'" mode="ios">{{pedido.estado}}</ion-badge>
+            <ion-badge color="primary"  *ngIf="pedido.estado=='entregado'" mode="ios">{{pedido.estado}}</ion-badge>
+          </ion-item>
+        </ion-list>
+        <ion-button expand="block" (click)="alerta(pedido.id_pedido)" fill="solid" color="danger" *ngIf="(pedido.estado === 'pendiente') || (pedido.estado === 'rechazado')">Eliminar Pedido</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

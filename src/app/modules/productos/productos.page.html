@@ -2,29 +2,41 @@
 <ion-content [fullscreen]="true">
   <ion-segment value="todos" (ionChange)="filtrarProducto($event)">
     <ion-segment-button value="todos">
-        <ion-label>Todos</ion-label>
+      <ion-label>Todos</ion-label>
     </ion-segment-button>
     <ion-segment-button value="activo">
-        <ion-label>Activos</ion-label>
+      <ion-label>Activos</ion-label>
     </ion-segment-button>
     <ion-segment-button value="inactivo">
-        <ion-label>Inactivos</ion-label>
+      <ion-label>Inactivos</ion-label>
     </ion-segment-button>
   </ion-segment>
   <ion-grid fixed>
     <ion-row>
-        <ion-col size="12">
-            <ion-item *ngFor="let producto of productos | filterEstado:estado" detail (click)="detalle_producto(producto.id_producto)">
-                <ion-thumbnail slot="start" class="img-producto">
-                    <img [src]="producto.imagen" />
-                </ion-thumbnail>
-                <ion-label class="ion-text-wrap">
-                    <h3>{{producto.nombre}}</h3>
-                    <p>{{producto.precio_unitario}} Bs</p>
-                </ion-label>
-                <ion-badge slot="end" [color]="producto.estado=='activo'?'success':'warning'" mode="ios">{{producto.estado}}</ion-badge>
-            </ion-item>
-        </ion-col>
+      <ion-col size="12">
+        <ion-list>
+          <ion-item detail (click)="detalle_producto(producto.id_producto)"
+            *ngFor="let producto of productos | filterEstado:estado">
+            <ion-thumbnail slot="start" class="img-producto">
+              <img [src]="producto.imagen" />
+            </ion-thumbnail>
+            <ion-label class="ion-text-wrap">
+              <h3>{{producto.nombre}}</h3>
+              <p>{{producto.precio_unitario}} Bs</p>
+            </ion-label>
+            <ion-badge slot="end" [color]="producto.estado=='activo'?'success':'warning'"
+              mode="ios">{{producto.estado}}</ion-badge>
+          </ion-item>
+        </ion-list>
+      </ion-col>
     </ion-row>
   </ion-grid>
+  <ion-fab horizontal="end" vertical="bottom" slot="fixed" (click)="adicionarProducto()">
+    <ion-fab-button>
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  <ion-refresher #refresh slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
 </ion-content>

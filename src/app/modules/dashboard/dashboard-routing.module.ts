@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { DashboardPage } from './dashboard.page';
-
 const routes: Routes = [
   // {
   //   path: '',
@@ -24,6 +22,10 @@ const routes: Routes = [
   {
     path:'historial',
     loadChildren:() => import('../historial/historial.module').then( m => m.HistorialPageModule)
+  },
+  {
+    path:'calendario',
+    loadChildren:() => import('../calendario/calendario.module').then( m => m.CalendarioPageModule)
   }
 ];
 

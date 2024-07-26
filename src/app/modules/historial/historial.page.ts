@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ActionSheetController, AlertController, IonCheckbox, IonSegment, ToastController } from '@ionic/angular';
+import { PdfGeneratorService } from 'src/app/services/pdf-generator.service';
 import { PedidosService } from 'src/app/services/pedidos.service';
 
 @Component({
@@ -21,7 +22,8 @@ export class HistorialPage {
     private ActivateRoute: ActivatedRoute,
     private _pedidos: PedidosService,
     private actionSheetCtrl: ActionSheetController,
-    private toastCtrl: ToastController) { }
+    private toastCtrl: ToastController,
+    private _pdf: PdfGeneratorService) { }
 
   ionViewWillEnter() {
     this.id_proveedor = this.ActivateRoute.snapshot.params['id_proveedor'];
@@ -68,9 +70,22 @@ export class HistorialPage {
     await alert.present();
   }
 
-  public generarReporte(){
-   console.log('Generar Reporte');
-   
+  public generarReporte() {
+    console.log('Generar Reporte');
+    this._pdf.generatePDF([
+      {
+        id_pedido:'123',
+        producto:'producti1',
+        cantidad:'500',
+        fecha_entrega:'2024-08-02'
+      },
+      {
+        id_pedido:'2222',
+        producto:'producti2',
+        cantidad:'600',
+        fecha_entrega:'2024-08-05'
+      }
+    ]);
   }
 
   public detalle_pedido(id: string) {
@@ -126,10 +141,10 @@ export class HistorialPage {
                 this.getPedidos(this.id_proveedor);
               }).catch(e => {
                 console.log(e);
-                this.mensaje('ocurrio un error inesperado al modificar el estado del pedido','danger',3000);
+                this.mensaje('ocurrio un error inesperado al modificar el estado del pedido', 'danger', 3000);
               })
             }
-            this.mensaje('Se confirmaron los pedidos','success',3000);
+            this.mensaje('Se confirmaron los pedidos', 'success', 3000);
             this.reset('confirmado');
           }
         },
@@ -144,10 +159,10 @@ export class HistorialPage {
                 this.getPedidos(this.id_proveedor);
               }).catch(e => {
                 console.log(e);
-                this.mensaje('ocurrio un error inesperado al modificar el estado del pedido','danger',3000);
+                this.mensaje('ocurrio un error inesperado al modificar el estado del pedido', 'danger', 3000);
               })
             }
-            this.mensaje('Se rechazaron los pedidos','success',3000);
+            this.mensaje('Se rechazaron los pedidos', 'success', 3000);
             this.reset('rechazado');
           }
         },

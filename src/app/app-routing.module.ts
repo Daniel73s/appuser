@@ -24,6 +24,10 @@ const routes: Routes = [
   {
     path: 'calendario',
     loadChildren: () => import('./modules/calendario/calendario.module').then( m => m.CalendarioPageModule)
+  },
+  {
+    path: 'reportes-proveedor',
+    loadChildren: () => import('./modules/reportes-proveedor/reportes-proveedor.module').then( m => m.ReportesProveedorPageModule)
   }
   // ,
   // {

@@ -72,20 +72,20 @@ export class HistorialPage {
 
   public generarReporte() {
     console.log('Generar Reporte');
-    this._pdf.generatePDF([
-      {
-        id_pedido:'123',
-        producto:'producti1',
-        cantidad:'500',
-        fecha_entrega:'2024-08-02'
-      },
-      {
-        id_pedido:'2222',
-        producto:'producti2',
-        cantidad:'600',
-        fecha_entrega:'2024-08-05'
-      }
-    ]);
+    // this._pdf.generatePDF([
+    //   {
+    //     id_pedido:'123',
+    //     producto:'producti1',
+    //     cantidad:'500',
+    //     fecha_entrega:'2024-08-02'
+    //   },
+    //   {
+    //     id_pedido:'2222',
+    //     producto:'producti2',
+    //     cantidad:'600',
+    //     fecha_entrega:'2024-08-05'
+    //   }
+    // ]);
   }
 
   public detalle_pedido(id: string) {

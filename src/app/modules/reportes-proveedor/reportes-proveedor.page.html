@@ -1,0 +1,43 @@
+<app-header></app-header>
+<ion-content [fullscreen]="true">
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col size="12">
+        <ion-text color="secondary">
+          <h1>Generacion de Reportes</h1>
+        </ion-text>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <ion-list>
+          <ion-list-header>
+            <ion-label>Reporte mensual</ion-label>
+          </ion-list-header>
+          <ion-item lines="none">
+            <ion-label slot="start">Seleccione fecha</ion-label>
+            <ion-datetime-button slot="end" datetime="datetime" display-format="YYYY-MM"></ion-datetime-button>
+          </ion-item>
+          <ion-item>
+            <ion-select [(ngModel)]="estado_pedido" label="Estado del pedido" placeholder="Estado del pedido">
+              <ion-select-option value="confirmado">Confirmados</ion-select-option>
+              <ion-select-option value="entregado">Entregados</ion-select-option>
+              <ion-select-option value="pendiente">Pendientes</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <ion-button (click)="reporte_mes()">Generar Reporte</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+<ion-modal [keepContentsMounted]="true">
+  <ng-template>
+    <ion-datetime [(ngModel)]="mes_anio"  mode="ios" id="datetime" presentation="month-year"></ion-datetime>
+  </ng-template>
+</ion-modal>

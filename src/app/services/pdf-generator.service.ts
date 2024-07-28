@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
+import QRious from 'qrious';
 @Injectable({
   providedIn: 'root'
 })
@@ -9,7 +10,7 @@ export class PdfGeneratorService {
   constructor() { }
 
 
-  generatePDF(data: any[]) {
+  public pedidosProveedorMesPDF(data: any[],proveedor:any) {
     const doc = new jsPDF();
 
     // Dimensiones de la página
@@ -28,37 +29,50 @@ export class PdfGeneratorService {
     // Información del Proveedor (Izquierda)
     doc.setFontSize(12);
     doc.setTextColor(100);
-    doc.text(`Proveedor: nombre del proveedor`, 10, 40);
-    doc.text(`Nit: Nit del proveedor`, 10, 50);
+    doc.text(`Proveedor:${proveedor.razon_social.toLowerCase()}`, 10, 40);
+    doc.text(`Nit: ${proveedor.nit || 'sin nit'}`, 10, 50);
 
     // Información del Colegio (Derecha)
     doc.setFontSize(12);
     doc.setTextColor(100);
     const InfoX = pageWidth - 80; // Ajusta este valor según sea necesario
-    doc.text(`Teléfono: telefono del proveedor`, InfoX, 40);
-    doc.text(`Dirección: direccion del proveedor`, InfoX, 50);
+    doc.text(`Celular: ${proveedor.celular}`, InfoX, 40);
+    doc.text(`Zona: ${proveedor.zona.toLowerCase()}`, InfoX, 50);
 
     // Línea divisoria
     doc.setLineWidth(0.5);
-    doc.setDrawColor(194, 191, 189); 
+    doc.setDrawColor(194, 191, 189);
     doc.line(10, 55, pageWidth - 10, 55);
 
     // Información adicional
     doc.setFontSize(10);
     doc.setTextColor(100);
     doc.text('Fecha de generación: ' + new Date().toLocaleDateString(), 10, 65);
- 
+
+    // Generar código QR
+    const qr = new QRious({
+      value: proveedor.id_proveedor, // URL o texto para el QR
+      size: 100 // Tamaño del QR
+    });
+
+    // Convertir el QR a base64 y agregarlo al PDF
+    const qrDataUrl = qr.toDataURL();
+    doc.addImage(qrDataUrl, 'PNG', pageWidth - 20, 10, 15, 15);
+
+
     // Encabezados de la tabla
-    const col = ['ID', 'Producto', 'Cantidad', 'Fecha de Entrega'];
+    const col = ['Fecha Entrega', 'Fecha Creacion', 'Colegio','Producto','Cantidad','Estado'];
     const rows: any[] = [];
 
     // Datos de la tabla
     data.forEach(pedido => {
       const temp = [
-        pedido.id_pedido.toString(),
+        new Date(pedido.fecha_entrega).toLocaleDateString(),
+        new Date(pedido.fecha_creacion).toLocaleDateString(),
+        pedido.colegio,
         pedido.producto,
         pedido.cantidad.toString(),
-        pedido.fecha_entrega
+        pedido.estado.toUpperCase()
       ];
       rows.push(temp);
     });

@@ -41,8 +41,9 @@ export class DashboardPage {
         this.router.navigate(['/dashboard/menu']);
       } else if (resp.rol == 'PROVEEDOR') {
         this.appPages = [
-          { title: 'Mis Productos', url: `/dashboard/productos/${resp.id_proveedor}`, icon: 'list' },
-          { title: 'Historial', url: `/dashboard/historial/${resp.id_proveedor}`, icon: 'cart' },
+          { title: 'Productos', url: `/dashboard/productos/${resp.id_proveedor}`, icon: 'list' },
+          { title: 'Pedidos', url: `/dashboard/historial/${resp.id_proveedor}`, icon: 'cart' },
+          { title: 'Reportes', url: `/dashboard/reportesp/${resp.id_proveedor}`, icon: 'document' },
         ]
         this.router.navigate(['/dashboard/productos/', resp.id_proveedor]);
       }

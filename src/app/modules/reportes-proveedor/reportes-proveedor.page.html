@@ -10,13 +10,23 @@
     </ion-row>
     <ion-row>
       <ion-col size="12">
+        <ion-item>
+          <ion-label class="ion-text-wrap">Lista de entregados del mes pasado</ion-label>
+          <ion-button slot="end" (click)="listamespasado()">
+            Generar
+          </ion-button>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
         <ion-list>
           <ion-list-header>
             <ion-label>Reporte mensual</ion-label>
           </ion-list-header>
           <ion-item lines="none">
-            <ion-label slot="start">Seleccione fecha</ion-label>
-            <ion-datetime-button slot="end" datetime="datetime" display-format="YYYY-MM"></ion-datetime-button>
+            <ion-label slot="start">Seleccione Mes</ion-label>
+            <ion-datetime-button slot="end" datetime="reportemes" display-format="YYYY-MM"></ion-datetime-button>
           </ion-item>
           <ion-item>
             <ion-select [(ngModel)]="estado_pedido" label="Estado del pedido" placeholder="Estado del pedido">
@@ -33,11 +43,45 @@
         <ion-button (click)="reporte_mes()">Generar Reporte</ion-button>
       </ion-col>
     </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <ion-list>
+          <ion-list-header>
+            <ion-label>
+              <h2>Reporte por fecha</h2>
+            </ion-label>
+          </ion-list-header>
+          <ion-item lines="none">
+            <ion-label slot="start">Seleccione fecha</ion-label>
+            <ion-datetime-button slot="end" datetime="reportefecha"></ion-datetime-button>
+          </ion-item>
+          <ion-item>
+            <ion-select [(ngModel)]="estado_pedido_fecha" label="Estado del pedido" placeholder="Estado del pedido">
+              <ion-select-option value="confirmado">Confirmados</ion-select-option>
+              <ion-select-option value="entregado">Entregados</ion-select-option>
+              <ion-select-option value="pendiente">Pendientes</ion-select-option>
+              <ion-select-option value="general">Todos</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <ion-button (click)="reporte_fecha()">Generar Reporte</ion-button>
+      </ion-col>
+    </ion-row>
   </ion-grid>
 </ion-content>
 
 <ion-modal [keepContentsMounted]="true">
   <ng-template>
-    <ion-datetime [(ngModel)]="mes_anio"  mode="ios" id="datetime" presentation="month-year"></ion-datetime>
+    <ion-datetime [(ngModel)]="mes_anio"  mode="md" id="reportemes" presentation="month-year"></ion-datetime>
+  </ng-template>
+</ion-modal>
+
+<ion-modal [keepContentsMounted]="true">
+  <ng-template>
+    <ion-datetime [(ngModel)]="fecha_reporte" mode="md" id="reportefecha" presentation="date"></ion-datetime>
   </ng-template>
 </ion-modal>

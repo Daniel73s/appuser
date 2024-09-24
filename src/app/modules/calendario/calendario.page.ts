@@ -39,7 +39,7 @@ export class CalendarioPage {
             colorFondo = getComputedStyle(document.documentElement).getPropertyValue('--ion-color-danger');
             break;
           case 'entregado':
-            colorFondo = getComputedStyle(document.documentElement).getPropertyValue('--ion-color-primary');
+            colorFondo = getComputedStyle(document.documentElement).getPropertyValue('--ion-color-tertiary');
             break;
           default:
             // Opcional: agregar un caso por defecto para manejar otros valores de estado

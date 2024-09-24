@@ -30,6 +30,10 @@ const routes: Routes = [
   {
     path:'reportesp',
     loadChildren:() => import('../reportes-proveedor/reportes-proveedor.module').then( m => m.ReportesProveedorPageModule)
+  },
+  {
+    path:'reportesc',
+    loadChildren:() => import('../reportes-colegio/reportes-colegio.module').then( m => m.ReportesColegioPageModule)
   }
 ];
 

@@ -28,6 +28,10 @@ const routes: Routes = [
   {
     path: 'reportes-proveedor',
     loadChildren: () => import('./modules/reportes-proveedor/reportes-proveedor.module').then( m => m.ReportesProveedorPageModule)
+  },
+  {
+    path: 'reportes-colegio',
+    loadChildren: () => import('./modules/reportes-colegio/reportes-colegio.module').then( m => m.ReportesColegioPageModule)
   }
   // ,
   // {

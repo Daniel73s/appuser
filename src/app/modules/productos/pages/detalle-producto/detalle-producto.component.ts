@@ -47,7 +47,7 @@ export class DetalleProductoComponent implements OnInit{
   private formInit() {
     this.formUpdateProducto = this.fb.group({
       nombre: ['', [Validators.required, Validators.maxLength(50)]],
-      precio_unitario: ['', [Validators.required, Validators.min(2), Validators.max(2)]],
+      precio_unitario: ['', [Validators.required, Validators.min(1)]],
       tipo: ['', [Validators.required]],
       descripcion: ['', [Validators.required, Validators.maxLength(250)]],
       medida: [''],

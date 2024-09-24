@@ -18,7 +18,8 @@
         <ion-text color="secondary">
           <span class="texto-subtitulo">Fecha de entrega</span>
         </ion-text>
-        <ion-datetime (ionChange)="setfechas($event)"  [min]="fecha_actual" [highlightedDates]="pedidos_realizados" presentation="date" locale="es-ES" size="cover" [multiple]="true" [isDateEnabled]="isWeekday">
+        <!-- [min]="fecha_actual" -->
+        <ion-datetime (ionChange)="setfechas($event)"[min]="fecha_actual"  [highlightedDates]="pedidos_realizados" presentation="date" locale="es-ES" size="cover" [multiple]="true" [isDateEnabled]="isWeekday">
         </ion-datetime>
       </ion-col>
       <ion-col size="12">

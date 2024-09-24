@@ -37,6 +37,7 @@ export class DashboardPage {
           { title: 'Catalogo de productos', url: '/dashboard/menu', icon: 'fast-food' },
           { title: 'Proveedores', url: '/dashboard/proveedores', icon: 'people' },
           { title: 'Calendario', url: `/dashboard/calendario/${resp.id_colegio}`, icon: 'calendar' },
+          { title: 'Reportes', url: `/dashboard/reportesc/${resp.id_colegio}`, icon: 'document' },
         ]
         this.router.navigate(['/dashboard/menu']);
       } else if (resp.rol == 'PROVEEDOR') {

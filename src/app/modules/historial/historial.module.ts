@@ -12,6 +12,7 @@ import { CalendarioPedidosComponent } from './pages/calendario-pedidos/calendari
 import { DetallePedidoComponent } from './pages/detalle-pedido/detalle-pedido.component';
 import { MapaComponent } from './modals/mapa/mapa.component';
 import { PipesModule } from 'src/app/helpers/pipes/pipes.module';
+import { MapaProveedorComponent } from './pages/mapa-proveedor/mapa-proveedor.component';
 
 @NgModule({
   imports: [
@@ -22,6 +23,6 @@ import { PipesModule } from 'src/app/helpers/pipes/pipes.module';
     ComponentsModule,
     PipesModule
   ],
-  declarations: [HistorialPage,CalendarioPedidosComponent,DetallePedidoComponent,MapaComponent]
+  declarations: [HistorialPage,CalendarioPedidosComponent,DetallePedidoComponent,MapaComponent,MapaProveedorComponent]
 })
 export class HistorialPageModule {}

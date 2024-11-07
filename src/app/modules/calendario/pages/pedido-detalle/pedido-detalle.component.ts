@@ -14,14 +14,12 @@ export class PedidoDetalleComponent  implements OnInit {
 
   ngOnInit() {
     this.id_pedido=this.RoutedActivate.snapshot.params['id'];
-    console.log(this.id_pedido);
     this.getInfoPedido(this.id_pedido);
   }
 
 
   private getInfoPedido(id_pedido:string){
       this._pedido.getInformacionPedido(id_pedido).then((resp:any)=>{
-        console.log(resp);
         this.pedido=resp;
       }).catch((e:any)=>{
         console.log(e);

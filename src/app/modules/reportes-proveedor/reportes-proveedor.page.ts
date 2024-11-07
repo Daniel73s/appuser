@@ -30,7 +30,6 @@ export class ReportesProveedorPage {
 
   private getInfoProveedor(id_proveedor: string) {
     this._proveedores.getProveedor(id_proveedor).then((resp: any) => {
-      console.log(resp);
       this.proveedor = resp;
     }).catch((e: any) => {
       console.log(e);

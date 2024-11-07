@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 })
 export class UploadsService {
 
-  private url_upload:string='http://localhost:8080/api/uploads';
+  private url_upload:string='https://server-ogdr.onrender.com/api/uploads';
   constructor(private http:HttpClient) { }
 
 

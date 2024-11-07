@@ -37,7 +37,6 @@ export class CalendarioPedidosComponent implements OnInit {
           role: 'cancel',
           cssClass: 'secondary',
           handler: () => {
-            console.log('Confirm Cancel: blah');
           }
         }, {
           text: 'Confirmar',
@@ -51,7 +50,6 @@ export class CalendarioPedidosComponent implements OnInit {
     await alert.present();
   }
   public verpedidos(e:any){
-    console.log(e.detail.value);
     this.pedido=true;
   }
   public highlightedDates = [

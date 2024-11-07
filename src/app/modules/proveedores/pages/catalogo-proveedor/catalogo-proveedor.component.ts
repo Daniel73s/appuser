@@ -27,7 +27,6 @@ export class CatalogoProveedorComponent implements OnInit {
 
   }
   public ordenar(id: string) {
-    console.log('ordenar');
     this.router.navigate(['/dashboard/menu/ordenar-producto']);
   }
 

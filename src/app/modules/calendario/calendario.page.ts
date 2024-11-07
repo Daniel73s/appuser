@@ -52,8 +52,6 @@ export class CalendarioPage {
           backgroundColor: colorFondo
         }
       });
-
-      console.log(this.pedidos_realizados);
     }).catch((e: any) => {
       console.log(e.message);
     })
@@ -61,11 +59,9 @@ export class CalendarioPage {
 
   public getPedido(e: any) {
     this.pedido = undefined;
-    console.log(e.detail.value);
     const date = e.detail.value;
     this._pedidos.getPedidoByColegioAndFechaEntrega(this.id_colegio, date)
       .then((resp: any) => {
-        console.log(resp);
         this.pedido = resp;
       }).catch(e => {
         console.log(e.message);
@@ -83,7 +79,6 @@ export class CalendarioPage {
           role: 'cancel',
           cssClass: 'secondary',
           handler: () => {
-            console.log('Confirm Cancel: blah');
           }
         }, {
           text: 'Eliminar',
@@ -95,11 +90,9 @@ export class CalendarioPage {
                 this.datetime.reset();
                 this.getPedidosColegio(this.id_colegio);
               }).catch((e: any) => {
-                console.log(e);
                 this.mensaje('error al eliminar el pedido', 'danger', 3000);
               })
             }).catch((e: any) => {
-              console.log(e);
               this.mensaje('Ocurrio un error al eliminar el detalle del pedido', 'danger', 3000);
             })
           }

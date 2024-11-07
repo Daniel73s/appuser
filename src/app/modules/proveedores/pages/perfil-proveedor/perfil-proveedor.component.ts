@@ -23,8 +23,6 @@ export class PerfilProveedorComponent {
   private getProveedor(id: string) {
     this._proveedores.getProveedor(id).then((resp:any)=>{
           this.proveedor=resp;
-          console.log(resp);
-          
     });
   }
 

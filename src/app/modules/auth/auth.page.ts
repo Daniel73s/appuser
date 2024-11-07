@@ -32,7 +32,6 @@ export class AuthPage implements OnInit {
 
   public login() {
     if (this.formlogin.valid) {
-      console.log(this.formlogin.value);
       this.loading_component();
       const { usuario, pass } = this.formlogin.getRawValue();
       this._auth.login(usuario, pass).then((resp: any) => {

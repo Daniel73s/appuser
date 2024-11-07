@@ -46,10 +46,8 @@ export class ProductosPage {
   }
 
   handleRefresh(event: any) {
-    console.log(event);
     this._proveedor.getProductosProveedor(this.id).then((resp: any) => {
       this.productos = resp;
-      console.log(this.productos);
     }).catch((e: any) => { console.log(e) })
       .finally(() => {
         this.refresh.complete();
@@ -68,13 +66,10 @@ export class ProductosPage {
           text: 'Cancelar',
           role: 'cancel',
           handler: () => {
-            console.log('Confirm Cancel: blah');
           }
         }, {
           text: "Aceptar",
           handler: () => {
-            //Realizar la accion para cambiar de estado al proveedor
-            console.log(id, accion);
             this._productos.updateEstadoProducto(id, accion).then((resp: any) => {
               this.mensaje(resp.mensaje, 'success', 3000);
               this.getProductos(this.id);

@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class ProveedoresService {
-  private url: string = 'http://localhost:8080/api/proveedores';
+  private url: string = 'https://server-ogdr.onrender.com/api/proveedores';
   constructor(private http:HttpClient) { }
 
   public getProveedores() {
@@ -24,8 +24,6 @@ export class ProveedoresService {
   //prueba
   public getProveedorprueba(id:string){
     this.http.get(`${this.url}/one/${id}`).subscribe(resp=>{
-      console.log(resp);
-      
     })
   }
 

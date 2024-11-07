@@ -29,8 +29,6 @@ export class ReportesColegioPage {
   private getInfo(id_colegio: string) {
     this._colegios.getColegioById(id_colegio).then((resp: any) => {
       this.colegio = resp;
-      console.log(resp);
-
     }).catch(e => {
       console.log(e);
     })
@@ -70,11 +68,8 @@ export class ReportesColegioPage {
     const mes = date.getMonth() + 1;
     const anio = date.getFullYear();
     if (this.id_colegio && this.date) {
-      console.log(this.id_colegio, anio, mes);
       this._reportes.getPedidosColegioByMes(this.id_colegio, anio, mes,this.estado_pedido).then((resp: any) => {
         this.generate_PDF_colegio(resp);
-        console.log(resp);
-        
       }).catch(e => {
         console.log(e);
       })
@@ -84,8 +79,6 @@ export class ReportesColegioPage {
   }
 
   public generate_PDF_colegio(data:[]){
-    console.log("este es el colegio",this.colegio);
-    
     const date = new Date(this.date);
     const mes = date.getMonth() + 1;
       this._generatepdf.generar_PDF_Colegio(data,this.colegio,this.getMonthName(mes))

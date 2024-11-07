@@ -25,11 +25,8 @@ private id_proveedor!:string;
 
   private getPedidos() {
     const date=new Date().toISOString();
-    console.log("este es la fecha",date.slice(0,10));
-    
     this.mapbox.deleteMarkers();
       this.reportes.getPedidosProveedorByDate(this.id_proveedor,date.slice(0,10),'confirmado').then(((resp:any)=>{
-        console.log(resp);
         resp.forEach((item:any) => {
           this.mapbox.createPin(item);
         });

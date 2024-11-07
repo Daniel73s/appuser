@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class ReportesService {
-  private url: string = 'http://localhost:8080/api/reportes';
+  private url: string = 'https://server-ogdr.onrender.com/api/reportes';
   constructor(private http: HttpClient) { }
 
   //todos los pedidos de un proveedor dependiendo del mes y estado

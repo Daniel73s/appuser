@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class ColegiosService {
-  private url: string = 'http://localhost:8080/api/colegios'
+  private url: string = 'https://server-ogdr.onrender.com/api/colegios'
   constructor(private http: HttpClient) { }
 
   public getColegioById(id_colegio:string) {

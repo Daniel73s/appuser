@@ -64,7 +64,6 @@ export class OrdenarProductoPageComponent {
           role: 'cancel',
           cssClass: 'secondary',
           handler: () => {
-            console.log('Confirm Cancel: blah');
           }
         }, {
           text: 'Confirmar',
@@ -73,17 +72,6 @@ export class OrdenarProductoPageComponent {
               this.mensaje('Faltan campos por llenar', 'danger', 3000);
             } else {
               if (!this.allDatesValid(this.fechas, this.fechasNoValidas)) {
-                //datos para el detalle del pedido
-                console.log('id_producto', this.producto.id_producto);
-                console.log('cantidad', this.numEstudiantes);
-
-                //datos para el pedido
-                console.log('id_proveedor', this.producto.id_proveedor);
-                console.log('id_colegio', this.id_colegio);
-                console.log('fechas', this.fechas);
-                console.log('hora inicio', this.hora_inicio);
-                console.log('hora_fin', this.hora_fin);
-
                 for (let i = 0; i < this.fechas.length; i++) {
                   // const element = array[i];
                   this._pedidos.createPedido({
@@ -98,7 +86,7 @@ export class OrdenarProductoPageComponent {
                       id_producto: this.producto.id_producto,
                       cantidad: this.numEstudiantes
                     }).then((resp: any) => {
-                      console.log(resp.mensaje);
+
                     }).catch(e => {
                       console.log(e.message);
                     })
@@ -135,7 +123,6 @@ export class OrdenarProductoPageComponent {
       this.producto = resp;
       this.id_proveedor = resp.id_proveedor;
       this.limite = Number(resp.limite_entregas);
-      console.log(resp);
     }).catch(e => console.log)
   }
 
@@ -150,13 +137,10 @@ export class OrdenarProductoPageComponent {
   public setfechas(e: any) {
     this.fechas = e.detail.value;
     this.nopermitido = '';
-    console.log(this.fechas);
     if (this.fechas) {
       const date = this.fechas[this.fechas.length - 1];
       this._pedidos.getPedidoByProveedorAndFechaEntrega(this.id_proveedor, date)
         .then((resp: any) => {
-          console.log(this.CantidadTotal(resp), 'este es la cantidad que existe ');
-          console.log(this.numEstudiantes + this.CantidadTotal(resp), 'cantidad mas los estudiantes')
           if (this.numEstudiantes + this.CantidadTotal(resp) > this.limite) {
             this.nopermitido = this.fechas[this.fechas.length - 1];
             this.fechasNoValidas.push(this.fechas[this.fechas.length - 1]);
@@ -201,8 +185,6 @@ export class OrdenarProductoPageComponent {
           backgroundColor: colorFondo
         }
       });
-
-      console.log(this.pedidos_realizados);
     }).catch((e: any) => {
       console.log(e.message);
     })

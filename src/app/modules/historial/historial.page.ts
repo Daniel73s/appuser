@@ -50,12 +50,10 @@ export class HistorialPage {
           role: 'cancel',
           cssClass: 'secondary',
           handler: () => {
-            console.log('Confirm Cancel: blah');
           }
         }, {
           text: 'Confirmar',
           handler: (e: any) => {
-            console.log('Confirm Okay', e.fecha_entrega);
             this.pedidos_seleccionados = [];
             if (this.check) {
               this.check.checked = false;
@@ -79,9 +77,7 @@ export class HistorialPage {
   }
 
   private getPedidos(id_proveedor: string) {
-    console.log('se mostraran los pedidos de ', id_proveedor);
     this._pedidos.getPedidoByProveedor(id_proveedor).then((resp: any) => {
-      console.log(resp);
       this.pedidos = resp;
     }).catch((e: any) => {
       console.log(e);
@@ -94,7 +90,6 @@ export class HistorialPage {
   }
 
   public addpedidoSeleccionado(e: any): void {
-    console.log(e.detail.value);
     const { value, checked } = e.detail;
 
     if (checked) {
@@ -105,7 +100,6 @@ export class HistorialPage {
   }
 
   public confirmar() {
-    console.log(this.pedidos_seleccionados);
 
   }
 
@@ -120,13 +114,10 @@ export class HistorialPage {
         {
           text: 'Confirmar Pedidos',
           handler: () => {
-            console.log('los pedidos seran confirmados', this.pedidos_seleccionados);
             for (let i = 0; i < this.pedidos_seleccionados.length; i++) {
               this._pedidos.modEstadoPedido(this.pedidos_seleccionados[i], 'confirmado').then((resp) => {
-                console.log(resp);
                 this.getPedidos(this.id_proveedor);
               }).catch(e => {
-                console.log(e);
                 this.mensaje('ocurrio un error inesperado al modificar el estado del pedido', 'danger', 3000);
               })
             }
@@ -138,13 +129,10 @@ export class HistorialPage {
           text: 'Rechazar Pedidos',
           cssClass: 'btn_danger',
           handler: () => {
-            console.log('los pedidos seran rechazados', this.pedidos_seleccionados);
             for (let i = 0; i < this.pedidos_seleccionados.length; i++) {
               this._pedidos.modEstadoPedido(this.pedidos_seleccionados[i], 'rechazado').then((resp) => {
-                console.log(resp);
                 this.getPedidos(this.id_proveedor);
               }).catch(e => {
-                console.log(e);
                 this.mensaje('ocurrio un error inesperado al modificar el estado del pedido', 'danger', 3000);
               })
             }

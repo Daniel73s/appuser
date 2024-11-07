@@ -34,7 +34,7 @@ export class AddProductoComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('se ejecuto');
+
     this.formInit();
   }
 
@@ -53,7 +53,6 @@ export class AddProductoComponent implements OnInit {
   private getproveedorId() {
     this._storage.getDataUser().then((resp: any) => {
       this.id_proveedor = resp.id_proveedor;
-      console.log(this.id_proveedor);
     }).catch(e => {
       console.log(e.message);
       this.mensaje('error al obtener datos del proveedor recarge la pagina', 'danger', 3000, 'top');
@@ -71,7 +70,6 @@ export class AddProductoComponent implements OnInit {
           }).then((producto: any) => {
             this._productos.asignarProducto(producto.id_producto, this.id_proveedor)
               .then((resp: any) => {
-                console.log(resp.mensaje);
                 this.mensaje(resp.mensaje, 'success', 3000, 'top');
               }).catch(e => {
                 console.log(e.message);

@@ -59,7 +59,6 @@ export class DetalleProductoComponent implements OnInit{
 
   private getProducto(id: string) {
     this._productos.getProductoById(id).then((resp: any) => {
-      console.log(resp);
       this.url = resp.imagen;
       this.lasturl = resp.imagen;
       this.formUpdateProducto.patchValue({
@@ -85,7 +84,6 @@ export class DetalleProductoComponent implements OnInit{
       const id_imagen = this.getIdImage(this.lasturl);
       this._uploads.updateImageCloudinary(id_imagen, this.selectedFile).then((resp: any) => {
         this._productos.updateImage(this.id_producto, resp.url_image).then((resp: any) => {
-          console.log(resp);
           this.mensaje(resp.mensaje, 'success');
           this.router.navigate(['/dashboard/productos/', this.id_proveedor]);
         }).catch(e => {

@@ -34,14 +34,12 @@ export class CategoriaProductosPageComponent implements OnInit {
 
   private getCategoria(id_categoria: string) {
     this._categorias.getOneCategoria(id_categoria).then((resp: any) => {
-      console.log(resp);
       this.categoria = resp;
     }).catch(e => console.log)
   }
 
   private getProductos(id_categoria: string) {
     this._productos.getProductosByCategoria(id_categoria).then((resp:any)=>{
-      console.log(resp);
       this.productos=resp;
     }).catch(e=>console.log)
   }

@@ -37,7 +37,6 @@ export class DetallePedidoComponent {
 
   private getInfoPedido(id_pedido: string) {
     this._pedidos.getInformacionPedido(id_pedido).then((resp: any) => {
-      console.log(resp);
       this.pedido = resp;
     }).catch((e: any) => {
       console.log(e);
@@ -49,7 +48,6 @@ export class DetallePedidoComponent {
       this.mensaje(resp.mensaje, 'success', 3000);
       this.router.navigate(['/dashboard/historial/', this.pedido.id_proveedor]);
     }).catch((e: any) => {
-      console.log(e);
       this.mensaje('ocurrio un error al entregar el pedido', 'danger', 3000);
     })
   }
@@ -74,7 +72,6 @@ export class DetallePedidoComponent {
           role: 'cancel',
           cssClass: 'secondary',
           handler: () => {
-            console.log('Confirm Cancel: blah');
           }
         }, {
           text: 'Aceptar',
